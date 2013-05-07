@@ -49,8 +49,11 @@ function logout(i){
 
 if(/[0-9]+/.test(getCookie('changeAccount'))){ //Si un cookie de changement de compte existe
     if (/logged_out=1/.test(window.location)){ //On vérifit qu'on est sur la page de connexion
-        
-        var form = document.getElementsByTagName("form")[2];
+        var i = 0;
+        var form_length = document.getElementsByTagName("form").length;
+        for(i=0;i<form_length;i++){
+            if(document.getElementsByTagName("form")[i].className == "js-signin signin") var form = document.getElementsByTagName("form")[i];
+        }
         
         //On remplit le formulaire
         form.getElementsByTagName("input")[0].value=user[getCookie('changeAccount')]['username'];
